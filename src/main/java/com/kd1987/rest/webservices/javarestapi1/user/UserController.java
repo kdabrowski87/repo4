@@ -44,4 +44,9 @@ public class UserController {
 
         return ResponseEntity.created(location).build();
     }
+
+    @DeleteMapping(path = "/users/{id}")
+    public void deleteUser(@PathVariable Integer id) {
+        userDaoService.deleteById(id);
+    }
 }
