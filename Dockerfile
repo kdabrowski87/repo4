@@ -17,3 +17,4 @@ EXPOSE 8080
 #USER javauser
 
 CMD ["java", "-jar", "app.jar"]
+#CMD ["/bin/sh"]
