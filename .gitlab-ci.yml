@@ -6,8 +6,8 @@ build-job:       # This job runs in the build stage, which runs first.
   tags:
       - CI
   script:
-    - az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
-    - az account set --subscription $AZURE_SUBSCRIPTION_ID
+    - az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+    - az account set --subscription $ARM_SUBSCRIPTION_ID
     - az acr login --name kdcommonacr1
     #- sudo docker build -t kdjavarestapi1:latest .
     #- sudo docker image ls
