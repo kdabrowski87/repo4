@@ -9,7 +9,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - sudo az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
     - sudo az account set --subscription $ARM_SUBSCRIPTION_ID
     - sudo az acr login --name kdcommonacr1
-    - sudo docker build -t kdacr2.azurecr.io/javarestapi1/kdjavarestapi1 .
+    - sudo docker build -t kdcommonacr1.azurecr.io/kdjavarestapi1:0.0.1 .
     - sudo docker image ls
-    - sudo docker push  kdacr2.azurecr.io/javarestapi1/kdjavarestapi1
+    - sudo docker push  kdcommonacr1.azurecr.io/kdjavarestapi1:0.0.1
 
