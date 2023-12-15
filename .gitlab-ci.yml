@@ -7,6 +7,6 @@ build-job:       # This job runs in the build stage, which runs first.
       - CI
   script:
     - ls
-    - docker build -t kdjavarestapi1:latest .
-    - docker image ls
+    - sudo docker build -t kdjavarestapi1:latest .
+    - sudo docker image ls
 
