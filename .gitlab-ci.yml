@@ -12,4 +12,6 @@ build-job:       # This job runs in the build stage, which runs first.
     - sudo docker build -t kdcommonacr1.azurecr.io/kdjavarestapi1:0.0.1 .
     - sudo docker image ls
     - sudo docker push  kdcommonacr1.azurecr.io/kdjavarestapi1:0.0.1
+    - ls
+    - sed sed -n '0,/<version>/ s/.*<version>\([^<]*\)<\/version>.*/\1/p' ./pom.xml
 
