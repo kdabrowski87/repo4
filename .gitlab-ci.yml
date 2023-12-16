@@ -12,5 +12,6 @@ build-job:       # This job runs in the build stage, which runs first.
     - sudo docker build -t kdcommonacr1.azurecr.io/kdjavarestapi1:0.0.1 .
     - sudo docker image ls
     - sudo docker push  kdcommonacr1.azurecr.io/kdjavarestapi1:0.0.1
-    - awk -F'[<>]' '/<artifactId>java-rest-api-1<\/artifactId>/{getline; if($3 ~ /^[0-9]+\.[0-9]+\.[0-9]+$/) print $3}' ./pom.xml
+    - version=$(awk -F'[<>]' '/<artifactId>java-rest-api-1<\/artifactId>/{getline; if($3 ~ /^[0-9]+\.[0-9]+\.[0-9]+$/) print $3}' ./pom.xml)
+    - eho $version
 
