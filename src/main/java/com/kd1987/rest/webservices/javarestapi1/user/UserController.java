@@ -7,6 +7,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -24,12 +25,14 @@ public class UserController {
 
     @GetMapping(path = "/users/{id}")
     public User getUserById(@PathVariable Integer id) {
-        User searched = userDaoService.findById(id);
-        if(searched==null){
+
+        Optional<User> searched = userDaoService.findById(id);
+        if(searched.isEmpty()){
             throw new UserNotFoundException("id:"+id);
         }
-        return searched;
+        return searched.get();
     }
+
 
     @PostMapping(path = "/users")
     public ResponseEntity<User> crateUser(@Valid @RequestBody User user) {
@@ -47,6 +50,12 @@ public class UserController {
 
     @DeleteMapping(path = "/users/{id}")
     public void deleteUser(@PathVariable Integer id) {
+
+        Optional<User> searched = userDaoService.findById(id);
+        if(searched.isEmpty()){
+            throw new UserNotFoundException("id:"+id);
+        }
+
         userDaoService.deleteById(id);
     }
 }

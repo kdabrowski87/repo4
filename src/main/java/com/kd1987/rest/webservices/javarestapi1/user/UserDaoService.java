@@ -2,41 +2,43 @@ package com.kd1987.rest.webservices.javarestapi1.user;
 
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.Optional;
 
 @Component
 public class UserDaoService {
 
-    private static Integer usersCount=0;
-    private static List<User> users = new ArrayList<>();
+    private UserRepository userRepository;
 
-    static {
-        users.add(new User(++usersCount,"user1", LocalDate.now().minusYears(25)));
-        users.add(new User(++usersCount,"user2",LocalDate.now().minusYears(50)));
-        users.add(new User(++usersCount,"user3",LocalDate.now().minusYears(18)));
+    public UserDaoService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
+
+    //private static Integer usersCount=0;
+    //private static List<User> users = new ArrayList<>();
+
+    //static {
+    //    users.add(new User(++usersCount,"user1", LocalDate.now().minusYears(25)));
+    //    users.add(new User(++usersCount,"user2",LocalDate.now().minusYears(50)));
+    //    users.add(new User(++usersCount,"user3",LocalDate.now().minusYears(18)));
+    //}
 
     public List<User> findAll() {
-        return users;
+        return userRepository.findAll();
     }
 
-    public User findById(Integer id) {
-        Predicate<? super User> predicate = user -> user.getId().equals(id);
+    public Optional<User> findById(Integer id) {
 
-        return users.stream().filter(predicate).findFirst().orElse(null);
+        return userRepository.findById(id);
     }
 
-    public User save(User user) {
-        user.setId(++usersCount);
-       users.add(user);
-       return  user;
+    public User save(User givenUser) {
+    //    user.setId(++usersCount);
+       User savedUser = userRepository.save(givenUser);
+       return  savedUser;
     }
 
     public void deleteById(int id) {
-        Predicate<? super User> predicate = user -> user.getId().equals(id);
-        users.removeIf(predicate);
+        userRepository.deleteById(id);
     }
 }
