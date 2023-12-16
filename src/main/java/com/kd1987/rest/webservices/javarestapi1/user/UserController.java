@@ -1,9 +1,9 @@
 package com.kd1987.rest.webservices.javarestapi1.user;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping(path = "/users")
-    public ResponseEntity<User> crateUser(@RequestBody User user) {
+    public ResponseEntity<User> crateUser(@Valid @RequestBody User user) {
        User saved = userDaoService.save(user);
         // return URI of created user - location heder
 
