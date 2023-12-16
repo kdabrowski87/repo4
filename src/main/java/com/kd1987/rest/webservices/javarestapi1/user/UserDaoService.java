@@ -1,5 +1,6 @@
 package com.kd1987.rest.webservices.javarestapi1.user;
 
+import com.kd1987.rest.webservices.javarestapi1.post.Post;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -33,9 +34,9 @@ public class UserDaoService {
     }
 
     public User save(User givenUser) {
-    //    user.setId(++usersCount);
-       User savedUser = userRepository.save(givenUser);
-       return  savedUser;
+        //    user.setId(++usersCount);
+        User savedUser = userRepository.save(givenUser);
+        return savedUser;
     }
 
     public void deleteById(int id) {

@@ -1,5 +1,6 @@
 package com.kd1987.rest.webservices.javarestapi1.user;
 
+import com.kd1987.rest.webservices.javarestapi1.post.Post;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -57,5 +58,18 @@ public class UserController {
         }
 
         userDaoService.deleteById(id);
+    }
+
+    @GetMapping("users/{id}/posts")
+    public List<Post> retrievePostsForUser(@PathVariable int id) {
+
+        Optional<User> searched = userDaoService.findById(id);
+
+        if(searched.isEmpty()){
+            throw new UserNotFoundException("id:"+id);
+        }
+
+        return searched.get().getPosts();
+
     }
 }
