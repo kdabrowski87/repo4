@@ -3,6 +3,7 @@ package com.kd1987.rest.webservices.javarestapi1.post;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import com.kd1987.rest.webservices.javarestapi1.user.*;
+import jakarta.validation.constraints.Size;
 
 @Entity(name = "users_posts")
 public class Post {
@@ -11,6 +12,7 @@ public class Post {
     @GeneratedValue
     private Integer id;
 
+    @Size(min=10)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,5 +41,13 @@ public class Post {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

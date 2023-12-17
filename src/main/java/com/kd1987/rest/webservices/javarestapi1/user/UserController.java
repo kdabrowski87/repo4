@@ -60,16 +60,5 @@ public class UserController {
         userDaoService.deleteById(id);
     }
 
-    @GetMapping("users/{id}/posts")
-    public List<Post> retrievePostsForUser(@PathVariable int id) {
 
-        Optional<User> searched = userDaoService.findById(id);
-
-        if(searched.isEmpty()){
-            throw new UserNotFoundException("id:"+id);
-        }
-
-        return searched.get().getPosts();
-
-    }
 }
